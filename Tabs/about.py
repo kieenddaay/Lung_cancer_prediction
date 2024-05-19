@@ -8,10 +8,10 @@ def app():
         st.title('Member')
         st.markdown(
         """<p style="font-size:20px;">
-            ↪ Trịnh Đình Phú 👉 Leader <br>
-            ↪ Vũ Đức Hiệu 👉 Data <br>
-            ↪ Phạm Hùng 👉 Model <br>
-            ↪ Nguyễn Hữu Trung Kiên 👉 UI
+            ↪ Trịnh Đình Phú 👉 Leader + data <br>
+            ↪ Vũ Đức Hiệu 👉 Phân cụm <br>
+            ↪ Phạm Hùng 👉 Phân lớp <br>
+            ↪ Nguyễn Hữu Trung Kiên 👉 Giao diện
             </p>
         """, unsafe_allow_html=True)
         st.title('Contact us!:envelope_with_arrow:')

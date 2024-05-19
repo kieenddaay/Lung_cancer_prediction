@@ -2,9 +2,27 @@ import numpy as np
 import pandas as pd
 import streamlit as st
 from keras.models import load_model
-import os
-os.environ['TF_ENABLE_ONEDNN_OPTS'] = '0'
 from PIL import Image
+from pymongo import MongoClient
+from io import BytesIO
+
+
+@st.cache_data
+def storeMongo(image, predicted, confidence):
+    client = MongoClient("mongodb://localhost:27017/")
+    db = client["Lung_Cancer_Prediction"]
+    collection = db["Predict_Result"]
+
+    image_bytes = BytesIO(image)
+
+    data = {
+        "image": image_bytes.getvalue(),
+        "Predicted class": float(predicted),
+        "Confidence": float(confidence)
+    }
+
+    collection.insert_one(data)
+    st.success("Dữ liệu đã được lưu lại!")
 
 @st.cache_data
 def image_processing(uploaded_image):

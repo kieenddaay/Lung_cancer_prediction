@@ -1,5 +1,5 @@
 import streamlit as st
-from web_function import image_processing, vgg16_model
+from web_function import image_processing, vgg16_model, storeMongo
 
 def app():
     st.markdown('<style>h1 { color: lightgreen; }</style>', unsafe_allow_html=True)
@@ -18,6 +18,9 @@ def app():
             predicted_class = vgg16_load_model[0]
             confidence = vgg16_load_model[1]
 
+            st.write('Predicted class:', predicted_class)
+            st.write('Confidence:', confidence)
+
             if predicted_class == 0:
                 st.warning('You may have lung cancer!😭🙏')
             elif predicted_class == 1:
@@ -25,4 +28,4 @@ def app():
             else:
                 st.success('You are okay bro💪😏👍')
 
-            return st.write('Predicted class:', predicted_class), st.write('Confidence:', confidence)
+            storeMongo(uploaded_image, predicted_class, confidence)
